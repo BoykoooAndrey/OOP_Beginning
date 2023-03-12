@@ -2,13 +2,14 @@ package views;
 
 import java.util.Scanner;
 
-import controller.Controller;
+import controller.Control;
+
 import model.Note;
 
 public class ViewNote {
-    private Controller controller;
+    private Control controller;
 
-    public ViewNote(Controller controller) {
+    public ViewNote(Control controller) {
         this.controller = controller;
     }
 

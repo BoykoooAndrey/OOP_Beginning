@@ -1,7 +1,11 @@
-package model;
+package repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Note;
+import model.NoteMapper;
+import model.dataExtracRec;
 
 public class RepositoryFiles implements Repository {
 

@@ -2,22 +2,18 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import logger.Loggable;
 import model.Note;
-import model.Repository;
+import repository.Repository;
 
-public class Controller {
+public class Controller implements Control{
     private final Repository repository;
-    private Loggable logger;
     
-    public Controller(Repository repository, Loggable logger) {
+    
+    public Controller(Repository repository) {
         this.repository = repository;
-        this.logger = logger;
     }
 
     public void saveNote(Note note) {
-        logger.saveEvent("Added note. ID: " + note.getId());
         repository.CreateNote(note);
     }
 
@@ -31,7 +27,7 @@ public class Controller {
         note.setHeading(newNote.getHeading());
         note.setText(newNote.getText());
         note.setCreateDate();
-        logger.saveEvent("Note ID:" + note.getId() + " has been update");
+        
         repository.saveAllNotes(notes);
 
     }
@@ -53,7 +49,7 @@ public class Controller {
                 resNotes.add(note);
             }
         }
-        logger.saveEvent("Note ID:" + iD + " has been deleted");
+        
         repository.saveAllNotes(resNotes);
     }
 
