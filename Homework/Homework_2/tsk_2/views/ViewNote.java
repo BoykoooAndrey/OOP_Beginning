@@ -50,7 +50,7 @@ public class ViewNote {
 
     private void deletNotes() {
         String ID = prompt("Введите ID: ");
-        controller.deleteUser(ID);
+        controller.deleteNote(ID);
     }
 
     private void createNote() throws Exception {

@@ -3,17 +3,21 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import logger.Loggable;
 import model.Note;
 import model.Repository;
 
 public class Controller {
     private final Repository repository;
+    private Loggable logger;
     
-    public Controller(Repository repository) {
+    public Controller(Repository repository, Loggable logger) {
         this.repository = repository;
+        this.logger = logger;
     }
 
     public void saveNote(Note note) {
+        logger.saveEvent("Added note. ID: " + note.getId());
         repository.CreateNote(note);
     }
 
@@ -27,6 +31,7 @@ public class Controller {
         note.setHeading(newNote.getHeading());
         note.setText(newNote.getText());
         note.setCreateDate();
+        logger.saveEvent("Note ID:" + note.getId() + " has been update");
         repository.saveAllNotes(notes);
 
     }
@@ -40,7 +45,7 @@ public class Controller {
         throw new Exception("Note not found");
     }
 
-    public void deleteUser(String iD) {
+    public void deleteNote(String iD) {
         List <Note> notes = repository.getAllNotes();
         List <Note> resNotes = new ArrayList<>();
         for (Note note : notes) {
@@ -48,6 +53,7 @@ public class Controller {
                 resNotes.add(note);
             }
         }
+        logger.saveEvent("Note ID:" + iD + " has been deleted");
         repository.saveAllNotes(resNotes);
     }
 
